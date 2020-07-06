@@ -1,0 +1,124 @@
+initializr:
+  javaVersions:
+    - id: 11
+      default: false
+    - id: 1.8
+      default: true
+  languages:
+    - name: Java
+      id: java
+      default: true
+    - name: Kotlin
+      id: kotlin
+      default: false
+  packagings:
+    - name: Jar
+      id: jar
+      default: true
+    - name: War
+      id: war
+      default: false
+  group-id:
+    value: com.dbs
+    artifact-id:
+      value: spring-app
+  types:
+    - name: Maven Project
+      id: maven-project
+      description: Generate a Maven based project archive
+      tags:
+        build: maven
+        format: project
+      default: true
+      action: /starter.zip
+    - name: Gradle Project
+      id: gradle-project
+      description: Generate a Gradle based project archive
+      tags:
+        build: gradle
+        format: project
+      default: false
+      action: /starter.zip'
+  dependencies:
+    - name: custom-initializr
+      content:
+        - name: initializr-web
+          id: initializr-web
+          groupId: io.spring.initializr
+          artifactId: initializr-web
+          version: 0.8.0.RELEASE
+          description: initializr-web
+          bom: spring-cloud
+        - name: initializr-generator-spring
+          id: initializr-generator-spring
+          groupId: io.spring.initializr
+          artifactId: initializr-generator-spring
+          version: 0.8.0.RELEASE
+          description: initializr-web
+          bom: spring-cloud
+    - name: jay-spring-project
+      content:
+        - name: jay-spring-project
+          id: jay-spring-project
+          groupId: io.spring.initializr
+          artifactId: initializr-generator-spring
+          version: 0.8.0.RELEASE
+          description: initializr-web
+          repository: dbs-internal-nexus
+  env:
+    boms:
+      spring-cloud:
+        groupId: org.springframework.cloud
+        artifactId: spring-cloud-dependencies
+        versionProperty: spring-cloud.version
+        order: 50
+        mappings:
+          - compatibilityRange: "[2.0.0.M3, 2.0.0.M5)"
+            version: Finchley.M2
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.0.M5, 2.0.0.M5]"
+            version: Finchley.M3
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.0.M6, 2.0.0.M6]"
+            version: Finchley.M4
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.0.M7, 2.0.0.M7]"
+            version: Finchley.M5
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.0.RC1, 2.0.0.RC1]"
+            version: Finchley.M6
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.0.RC2,2.0.0.RC2]"
+            version: Finchley.M7
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.0.RELEASE,2.0.0.RELEASE]"
+            version: Finchley.M9
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.1.RELEASE,2.0.2.RELEASE)"
+            version: Finchley.RC1
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.2.RELEASE,2.0.3.RELEASE)"
+            version: Finchley.RC2
+            repositories: spring-milestones
+          - compatibilityRange: "[2.0.3.RELEASE,2.0.x.BUILD-SNAPSHOT)"
+            version: Finchley.SR4
+          - compatibilityRange: "[2.0.x.BUILD-SNAPSHOT,2.1.0.M3)"
+            version: Finchley.BUILD-SNAPSHOT
+            repositories: spring-snapshots,spring-milestones
+          - compatibilityRange: "[2.1.0.M3,2.1.0.RELEASE)"
+            version: Greenwich.M1
+            repositories: spring-milestones
+          - compatibilityRange: "[2.1.0.RELEASE,2.1.x.BUILD-SNAPSHOT)"
+            version: Greenwich.SR5
+          - compatibilityRange: "[2.1.x.BUILD-SNAPSHOT,2.2.0.M4)"
+            version: Greenwich.BUILD-SNAPSHOT
+            repositories: spring-snapshots,spring-milestones
+          - compatibilityRange: "[2.2.0.M4,2.3.x.BUILD-SNAPSHOT)"
+            version: Hoxton.SR4
+          - compatibilityRange: "2.3.x.BUILD-SNAPSHOT"
+            version: Hoxton.BUILD-SNAPSHOT
+            repositories: spring-snapshots,spring-milestones
+    repositories:
+      dbs-internal-nexus:
+        name: common-repo
+        url: https://example.com/repo1
